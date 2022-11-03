@@ -12,12 +12,13 @@
     </header>
     <div>
         <form action="/productos" method="post">
-            <label for="title">Titulo:</label><br>
-            <input type="text" id="title"><br>
+            <label for="title">Nombre:</label><br>
+            <input type="text" id="title" name="title" /><br>
             <label for="price">Precio:</label><br>
-            <input type="text" id="price"><br>
-            <input type="submit" value="Enviar">
-            
+            <input type="text" id="price" name="price" /><br>
+            <label for="thumbnail">Imagen:</label><br>
+            <input type="text" id="thumbnail" name="thumbnail" /><br>
+            <input type="submit" value="Enviar" class="enviar" />
         </form>
     </div>
 </body>
