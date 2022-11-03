@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "title": "zapatillas",
+        "price": 1000,
+        "thumbnail": "https://www.google.com/url?sa=i&url=https%3A%2F%2Funsplash.com%2Fes%2Fs%2Ffotos%2Fnike-shoes&psig=AOvVaw2x-SJlM5ihFNKBCa-UCmxx&ust=1666303968619000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCLjeq5Ko7foCFQAAAAAdAAAAABAE"
+    },
+    {
+        "id": 2,
+        "title": "remera",
+        "price": 500,
+        "thumbnail": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.storebunkker.com.ar%2Fproductos%2Fremera-nike-worldtour%2F&psig=AOvVaw1oPzM3ZLj6ssROBrtWRCD3&ust=1666304076564000&source=images&cd=vfe&ved=0CA0QjRxqFwoTCLCBnsao7foCFQAAAAAdAAAAABAG"
+    },
+    {
+        "id": 3,
+        "title": "pantalon",
+        "price": 250,
+        "thumbnail": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fcentro-innato.com%2Fpuedo-controlar-el-miedo%2F%3Fen%3D2.82.2063088.2.25.78.pantalones%2Bnike%2B2020&psig=AOvVaw3ArEg1JWpb4oWPSm3yfqSW&ust=1666304107117000&source=images&cd=vfe&ved=0CA0QjRxqFwoTCIiR_tSo7foCFQAAAAAdAAAAABAJ"
+    }
+]
