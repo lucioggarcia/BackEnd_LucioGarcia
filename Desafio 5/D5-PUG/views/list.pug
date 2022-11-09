@@ -1,0 +1,25 @@
+
+html
+  head
+    title= "Desafio 5 - PUG"
+  body 
+    a(
+      href='/'
+    )='IR A CARGA DE PRODUCTOS'
+    h2='Lista de Productos'
+    if products.length ==0
+      h3='No hay datos'
+    else
+      table 
+        tr 
+          th='Titulo'
+          th='Precio'
+          th='Foto'
+        each product in products 
+          tr 
+            td=product.title 
+            td=product.price 
+            td 
+              img(
+                src=product.thumbnail
+              )

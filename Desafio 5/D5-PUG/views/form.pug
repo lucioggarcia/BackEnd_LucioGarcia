@@ -1,0 +1,61 @@
+
+html
+
+  head
+    title= "Desafio 5 - PUG"
+  
+  body
+    a(
+      href='/productos'
+    )='IR A LISTA DE PRODUCTOS'
+    h2='Nuevo producto'
+    form(
+      action='/productos'
+      method='POST'
+      
+    )
+      div
+        label(
+          for='title'
+        )='Nombre'
+        input(
+          id='title'
+          type='text'
+          name='title'
+          required
+        )
+        br
+        br
+      div
+        label(
+          for='price'
+        )='Precio'
+        input(
+          id='price'
+          type='number'
+          name='price'
+          required
+        )
+        br
+        br
+      div
+        label(
+          for='thumbnail'
+        )='Imagen'
+        input(
+          id='thumbnail'
+          type='text'
+          name='thumbnail'
+          required
+        )
+        br
+        br
+        button(
+          type='submit'
+          value="Enviar" 
+          class="enviar"
+        )='Agregar Producto'
+
+
+
+

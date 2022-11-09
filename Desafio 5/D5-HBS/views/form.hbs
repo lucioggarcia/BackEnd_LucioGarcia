@@ -1,0 +1,17 @@
+<a href="/productos">IR A LISTA DE PRODUCTOS</a>
+<h2 class="titulo">Nuevo producto</h2>
+<form action="/productos" method="POST">
+  <div>
+    <label for="title"> Nombre</label>
+    <input type="text" id="title" name="title" required><br><br>
+  </div>
+  <div>
+    <label for="price">Precio</label>
+    <input type="number" id="price" name="price" required><br><br>
+  </div>
+  <div>
+    <label for="thumbnail">Imagen</label>
+    <input type="text" id="thumbnail" name="thumbnail" required><br><br>
+  </div>
+  <button type="submit" value="Enviar" class="enviar">Agregar Producto</button>
+</form>
