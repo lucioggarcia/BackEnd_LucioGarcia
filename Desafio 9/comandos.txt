@@ -1,0 +1,223 @@
+//CREAR DB
+
+use ecommerce;
+
+//CREAR COLLECTION
+
+db.createCollection('productos');
+db.createCollection('mensajes');
+
+// 1. y 2. INSERTAR PRODUCTOS
+
+db.productos.insertMany([
+    {
+        "timestamp": 1669867785305,
+        "title": "Buzo Nike",
+        "price": 120,
+        "description": "Description here",
+        "code": "A1",
+        "image": "url"
+    },
+    {
+        "timestamp": 1669867791375,
+        "title": "Campera Nike",
+        "price": 580,
+        "description": "Description here",
+        "code": "A2",
+        "image": "url"
+    },
+    {
+        "timestamp": 1669867800974,
+        "title": "Camiseta Argentina",
+        "price": 900,
+        "description": "Description here",
+        "code": "A3",
+        "image": "url"
+    },
+    {
+        "timestamp": 1669867800973,
+        "title": "Botines Nike Mercurial",
+        "price": 1280,
+        "description": "Description here",
+        "code": "A4",
+        "image": "url"
+    },
+    {
+        "timestamp": 1669867800972,
+        "title": "Camiseta Union de Santa Fe",
+        "price": 1700,
+        "description": "Description here",
+        "code": "A5",
+        "image": "url"
+    },
+    {
+        "timestamp": 1669867800971,
+        "title": "Remera Nike",
+        "price": 2300,
+        "description": "Description here",
+        "code": "A6",
+        "image": "url"
+    },
+    {
+        "timestamp": 1669867800970,
+        "title": "Pantalon Adidas",
+        "price": 2860,
+        "description": "Description here",
+        "code": "A7",
+        "image": "url"
+    },
+    {
+        "timestamp": 1669867800969,
+        "title": "Short Nike",
+        "price": 3350,
+        "description": "Description here",
+        "code": "A8",
+        "image": "url"
+    },
+    {
+        "timestamp": 1669867800968,
+        "title": "Botines Adidas X",
+        "price": 4320,
+        "description": "Description here",
+        "code": "A9",
+        "image": "url"
+    },
+    {
+        "timestamp": 1669867800967,
+        "title": "Short Adidas",
+        "price": 4990,
+        "description": "Description here",
+        "code": "A10",
+        "image": "url"
+    },
+])
+
+// 1. y 2. INSERTAR MENSAJES
+db.mensajes.insertMany([
+    {
+        "timestamp": 1669867800967,
+        "email": 'lucio@gmail.com',
+        "message": 'mensaje 1'
+    },
+    {
+        "timestamp": 1669867800967,
+        "email": 'lucio@gmail.com',
+        "message": 'mensaje 2'
+    },
+    {
+        "timestamp": 1669867800967,
+        "email": 'lucio@gmail.com',
+        "message": 'mensaje 3'
+    },
+    {
+        "timestamp": 1669867800967,
+        "email": 'lucio@gmail.com',
+        "message": 'mensaje 4'
+    },
+    {
+        "timestamp": 1669867800967,
+        "email": 'lucio@gmail.com',
+        "message": 'mensaje 5'
+    },
+    {
+        "timestamp": 1669867800967,
+        "email": 'lucio@gmail.com',
+        "message": 'mensaje 6'
+    },
+    {
+        "timestamp": 1669867800967,
+        "email": 'lucio@gmail.com',
+        "message": 'mensaje 7'
+    },
+    {
+        "timestamp": 1669867800967,
+        "email": 'lucio@gmail.com',
+        "message": 'mensaje 8'
+    },
+    {
+        "timestamp": 1669867800967,
+        "email": 'lucio@gmail.com',
+        "message": 'mensaje 9'
+    },
+    {
+        "timestamp": 1669867800967,
+        "email": 'lucio@gmail.com',
+        "message": 'mensaje 10'
+    },
+])
+
+// 3. LISTAR DOCUMENTOS
+
+db.productos.find();
+db.mensajes.find();
+
+
+// 4. CONTAR CANTIDAD DE DOCUMENTOS
+
+db.productos.countDocuments();
+db.mensajes.countDocuments();
+
+// 5. CRUD SOBRE PRODUCTOS
+
+// A. AGREGAR PRODUCTO
+
+db.productos.insertOne({
+    "timestamp": 1669867800966,
+    "title": "Botines Adidas Predator",
+    "price": 4995,
+    "description": "Description here",
+    "code": "A11",
+    "image": "url"
+});
+
+// B. CONSULTA POR NOMBRE ESPECIFICO
+
+db.productos.find({title: "Remera Nike"});
+
+// i. LISTAR PRODUCTOS CON PRECIO MENOR A 1000
+
+db.productos.find({price: {$lt: 1000}});
+
+// ii. LISTAR PRODUCTOS CON PRECIO ENTRE 1000 Y 3000
+
+db.productos.find({ $and: [{price: {$gt:1000}},{price: {$lt:3000}}] });
+
+// iii. LISTAR PRODUCTOS CON PRECIO MAYOR A 3000
+
+db.productos.find({price: {$gt: 3000}});
+
+// iv. CONSULTA DEL NOMBRE DEL TERCER PRODUCTO MAS BARATO
+
+db.productos.find().sort({price: 1}).skip(2).limit(1);
+
+// C. ACTUALIZACION AGREGANDO CAMPO "STOCK" CON UN VALOR DE 100
+
+db.productos.updateMany({}, {$inc: {stock: 100}});
+
+// D. CAMBIAR STOCK A 0 SOBRE PRODUCTOS CON PRECIO MAYOR A 4000
+
+db.productos.updateMany({price: {$gt: 4000}}, {$set: {stock: 0}});
+
+// E. BORRAR PRODUCTOS CON PRECIO MENOR A 1000
+
+db.productos.deleteMany({price: {$lt: 1000}});
+
+// 6. CREAR USUARIO PEPE QUE SOLO PUEDA LEER LA DB
+
+db.createUser({user: "pepe", pwd: "asd456", roles: [{role: "read", db: "ecommerce"}]});
+
+// VERIFICACION
+mongo -u pepe -p asd456
+
+db.productos.insertOne({
+    "timestamp": 1669867800965,
+    "title": "Botines Puma",
+    "price": 3500,
+    "description": "Description here",
+    "code": "A12",
+    "image": "url"
+});
+
+
+
+
