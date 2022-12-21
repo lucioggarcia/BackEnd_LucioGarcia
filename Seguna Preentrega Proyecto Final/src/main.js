@@ -65,24 +65,44 @@ productosRuta.put('/:id', async (req, res) => {
 
 
 //Endpoints de carrito
-carritoRuta.post('/', async (req, res) => {
-    res.send(await carrito.save())
+carritoRuta.get('/', async (req,res)=>{
+    const listaCarritos = await carrito.getAll();
+    res.json(listaCarritos )
 })
 
 carritoRuta.delete('/:id', async (req, res) => {
     const id = parseInt(req.params.id)
-    res.send(await carrito.deleteById(id))
+    await carrito.deleteById(id)
+    res.json({
+        status: 'ok'
+      })
 })
 
 carritoRuta.get('/:id/productos', async (req, res) => {
     const id = parseInt(req.params.id)
-    res.send(await carrito.getById(id))
+    const listaProductos = await carrito.getById(id)
+    res.json(listaProductos ? listaProductos.productos :{})
+})
+
+carritoRuta.post('/', async (req, res) => {
+    const newCart = {
+        timestamp: Date.now(),
+        productos: []
+      };
+      const id = await carrito.save(newCart);
+    res.json(id)
 })
 
 carritoRuta.post('/:id/productos', async (req, res) => {
-    const id = parseInt(req.params.id)
-    const producto = req.body;
-    res.send(await carrito.saveProduct(id, producto))
+    const idCarrito = parseInt(req.params.id) ;
+  const idProducto = parseInt(req.body.idProducto) ;
+  const producto = await productos.getById(idProducto);
+  const carritox = await carrito.getById(idCarrito);
+  carrito.saveProduct(producto);
+  await carrito.update(carritox);
+  res.json({
+    status: 'ok'
+  });
 })
 
 carritoRuta.delete('/:id/productos/:idProd', async (req, res) => {

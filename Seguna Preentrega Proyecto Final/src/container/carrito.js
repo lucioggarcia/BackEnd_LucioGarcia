@@ -6,6 +6,12 @@ class Carrito {
         this.id = 1
     }
 
+    async getAll() {
+        const archivo = await fs.promises.readFile(this.filename, 'utf-8');
+        const archivoParseado = JSON.parse(archivo);
+        return archivoParseado;
+      }
+
     async save(){
         try{
             if(!fs.existsSync(this.filename)) {
