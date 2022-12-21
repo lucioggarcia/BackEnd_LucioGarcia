@@ -81,7 +81,7 @@ carritoRuta.delete('/:id', async (req, res) => {
 carritoRuta.get('/:id/productos', async (req, res) => {
     const id = parseInt(req.params.id)
     const listaProductos = await carrito.getById(id)
-    res.json(listaProductos ? listaProductos.productos :{})
+    res.json(listaProductos ? listaProductos :{})
 })
 
 carritoRuta.post('/', async (req, res) => {
