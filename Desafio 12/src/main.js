@@ -12,10 +12,23 @@ import productosApiRouter from './routers/api/productos.js'
 import addProductosHandlers from './routers/ws/productos.js'
 import addMensajesHandlers from './routers/ws/mensajes.js'
 
+import cookieParser from "cookie-parser";
+import session from "express-session";
 
 import MongoStore from 'connect-mongo'
 const advancedOptions = { useNewUrlParser: true, useUnifiedTopology: true };
 
+
+
+
+//--------------------------------------------
+// instancio servidor, socket y api
+
+const app = express()
+const httpServer = new HttpServer(app)
+const io = new Socket(httpServer)
+
+//--------------------------------------------rs
 app.use(cookieParser());
 app.use(session({
   store: MongoStore.create({
@@ -27,16 +40,6 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }));
-
-
-//--------------------------------------------
-// instancio servidor, socket y api
-
-const app = express()
-const httpServer = new HttpServer(app)
-const io = new Socket(httpServer)
-
-//--------------------------------------------
 // configuro el socket
 
 io.on('connection', async socket => {
