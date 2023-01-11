@@ -14,7 +14,7 @@ authWebRouter.get('/', (req, res) => {
 })
 
 authWebRouter.get('/login', (req, res) => {
-    if(!req.session){
+    if(!req.session.nombre){
         res.sendFile(process.cwd() + '/views/login.html')
     }else{
         res.redirect('/home')
